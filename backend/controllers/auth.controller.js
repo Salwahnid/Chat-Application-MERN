@@ -5,7 +5,7 @@ import bcrypt from "bcryptjs";
 import generateTokenAndSetCookie from "../utils/generateToken.js";
 
 //ce code n'est pas un middleware
-export const signup = async (req,res) => {
+export const    signup = async (req,res) => {
     try{
         // Cette ligne extrait les champs fullName, username, password, confirmPassword, et gender de l'objet req.body. Cela suppose que votre requête HTTP POST contient ces champs dans son corps, généralement envoyés via un formulaire HTML ou une requête JSON
         const { fullName,username,password,confirmPassword,gender } = req.body;

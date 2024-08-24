@@ -2,16 +2,14 @@
 import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
-
 import authRoutes from "./routes/auth.routes.js";
 import messageRoutes from "./routes/message.routes.js";
 import userRoutes from "./routes/user.routes.js";
-
-
+import {app, server} from "./socket/socket.js";
 import connectToMongoDB from "./db/connectToMongoDB.js";
 
 //Cela crée une instance de l'application Express. Toutes les fonctionnalités de l'application, telles que la définition des routes et des middlewares, sont associées à cet objet app.
-const app = express();
+//const app = express();
 const PORT = process.env.PORT || 5000;
 dotenv.config();
 
@@ -34,12 +32,8 @@ app.use ("/api/users", userRoutes);
 //});
 
 
-
-
-
-
 //Cela démarre le serveur en écoutant les connexions sur le port 5000. Lorsque le serveur démarre avec succès, il affiche un message dans la console indiquant que le serveur est en cours d'exécution.
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     connectToMongoDB();
     console.log(`Server running on port ${PORT}`)
 });
